@@ -31,3 +31,34 @@ posts
 id | title | content | views | account_id
 
 */
+
+DROP TABLE IF EXISTS accounts:
+DROP TABLE IF EXISTS posts;
+
+DROP SEQUENCE IF EXISTS account_id_seq;
+DROP SEQUENCE IF EXISTS post_id_seq;
+
+CREATE SEQUENCE account_id_seq;
+CREATE SEQUENCE post_id_seq;
+
+CREATE TABLE accounts (
+    id serial PRIMARY KEY ,
+    email VARCHAR(255),
+    username VARCHAR(255)
+);
+
+CREATE TABLE posts (
+    id serial PRIMARY KEY ,
+    title VARCHAR(255),
+    content VARCHAR(255),
+    views INTEGER,
+    account_id INTEGER,
+    constraint fk_account_id foreign key (account_id) references accounts(id) on delete cascade
+);
+
+INSERT INTO accounts (email, username) VALUES ('johnsmith@gmail.com', 'johnsmith');
+INSERT INTO accounts (email, username) VALUES ('johndoe@outlook.com', 'johndoe');
+INSERT INTO accounts (email, username) VALUES ('katemoor@hotmail.com', 'katemoor');
+INSERT INTO posts (title, content, views, account_id) VALUES ('My first post', 'This is my first post', 0, 1);
+INSERT INTO posts (title, content, views, account_id) VALUES ('My second post', 'This is my second post', 0, 1);
+INSERT INTO posts (title, content, views, account_id) VALUES ('Success', 'I got the job!', 2, 3);
