@@ -32,8 +32,8 @@ id | title | content | views | account_id
 
 */
 
-DROP TABLE IF EXISTS accounts:
 DROP TABLE IF EXISTS posts;
+DROP TABLE IF EXISTS accounts;
 
 DROP SEQUENCE IF EXISTS account_id_seq;
 DROP SEQUENCE IF EXISTS post_id_seq;
